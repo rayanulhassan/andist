@@ -1,0 +1,15 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Artisian's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+
+// customs bg colors for snackbars
+.error-snackbar .mdc-snackbar__surface {
+  background-color: red !important;
+}
+.success-snackbar .mdc-snackbar__surface {
+  background-color: #28a745 !important;
+}
+.mat-mdc-form-field-infix {
+  height: 32px !important;
+}

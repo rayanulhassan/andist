@@ -22,7 +22,17 @@
             "input": "apps/andist/public"
           }
         ],
-        "styles": ["apps/andist/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["config/styles"]
+        },
+        "styles": [
+          "config/styles/tailwind.scss",
+          "config/styles/themes.scss",
+          "apps/andist/src/styles/vendors.scss",
+          "config/styles/main.scss",
+          "apps/andist/src/styles/styles.scss",
+          "apps/andist/src/styles/tailwind.scss"
+        ],
         "scripts": []
       },
       "configurations": {
