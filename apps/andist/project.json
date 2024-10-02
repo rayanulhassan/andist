@@ -8,12 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/andist",
         "index": "apps/andist/src/index.html",
         "browser": "apps/andist/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/andist/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -23,9 +27,12 @@
           }
         ],
         "stylePreprocessorOptions": {
-          "includePaths": ["config/styles"]
+          "includePaths": [
+            "config/styles"
+          ]
         },
         "styles": [
+          "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
           "config/styles/tailwind.scss",
           "config/styles/themes.scss",
           "apps/andist/src/styles/vendors.scss",
@@ -40,8 +47,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "1500kb",
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
@@ -54,7 +61,13 @@
         "development": {
           "optimization": false,
           "extractLicenses": false,
-          "sourceMap": true
+          "sourceMap": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/andist/src/environments/environment.ts",
+              "with": "apps/andist/src/environments/environment.development.ts"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"
@@ -82,7 +95,9 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/andist/jest.config.ts"
       }

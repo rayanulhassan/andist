@@ -1,0 +1,34 @@
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="over" position="end" disableClose="true" #sidenav class="w-full sm:w-3/6" fixedInViewport="true">
+        @if (activeComponent) {
+            <div id="dynamic-content">
+                <ng-container *ngComponentOutlet="activeComponent; inputs: activeComponentInputs;"></ng-container>
+            </div>
+        }
+        
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="flex md:gap-4 max-h-screen min-h-screen overflow-hidden md:p-4 p-0 bg-white-50">
+            <!--navbar -->
+            <!-- <side-navbar></side-navbar> -->
+            <ng-container *ngTemplateOutlet="currentSidenavbarEl">
+            </ng-container>
+
+            <div class="flex-auto flex flex-col md:gap-4 gap-3">
+                <div class="">
+                    <ng-container *ngTemplateOutlet="currentTopbarEl">
+                    </ng-container>
+                </div>
+
+                <main class="h-full overflow-hidden md:px-0 px-3 md:max-h-[calc(100%-72px)] max-h-[calc(100%-142px)]">
+                    <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
+                                                                 Otherwise, layout changes won't be registered and the view won't be updated! -->
+                    @if (true) {
+                    <router-outlet></router-outlet>
+                    }
+                </main>
+            </div>
+            <!-- main -->
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,21 @@
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="over" position="end" disableClose="true" #sidenav class="w-full sm:w-3/6" fixedInViewport="true">
+        @if (activeComponent) {
+            <div id="dynamic-content">
+                <ng-container *ngComponentOutlet="activeComponent; inputs: activeComponentInputs;"></ng-container>
+            </div>
+        }
+        
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="">
+            <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
+                             Otherwise, layout changes won't be registered and the view won't be updated! -->
+            @if (true) {
+            <router-outlet></router-outlet>
+            }
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

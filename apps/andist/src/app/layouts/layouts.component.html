@@ -1,0 +1,28 @@
+@switch (activatedRouteData()?.['layout']) {
+@case ('empty') {
+<empty-layout></empty-layout>
+}
+
+@case ('default') {
+<default-layout [topbarEl]="topbarEl" [sidenavbarEl]="sidenavbarEl"></default-layout>
+}
+
+@default {
+<div>Invalid layout provided</div>
+}
+}
+
+
+<ng-template #topbarEl>
+    <top-navbar (navbarOpen)="navbarOpen($event)"></top-navbar>
+</ng-template>
+
+<ng-template #sidenavbarEl>
+
+
+    <side-navbar [app_name]="env.app_name" [isSideNavbarOpen]="isSideNavbarOpen() ?? false"
+        [isUserPaid]="user?.isPaid ?? false" (sideNavbarClose)="navbarOpen($event)"></side-navbar>
+
+
+
+</ng-template>

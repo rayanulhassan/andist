@@ -1,0 +1,49 @@
+<div>
+    <div>
+        <h1 class="text-lg font-semibold">
+            Create candidate search
+        </h1>
+        <small class="text-sm text-gray-400">
+            Add details for the search.
+        </small>
+    </div>
+
+    <div class="mt-6">
+        <form [formGroup]="projectForm" (submit)="submitForm()">
+            <mat-form-field class="w-full">
+                <mat-label class="mb-2"> Position name </mat-label>
+                <input placeholder="For Example: Hiring AI engineers" matInput [formControlName]="'name'">
+                <mat-error *ngIf="projectForm.get('name')?.hasError('required')">
+                    Name is required
+                </mat-error>
+            </mat-form-field>
+
+            
+
+
+            <div class="w-full">
+                <textarea style="width: -webkit-fill-available;" class="px-4 py-2 border border-gray-300 rounded-[6px] focus:border-gray-600" rows="2" placeholder="Job description or link to job" matInput
+                [formControlName]="'description'"></textarea>
+            </div>
+           
+
+            <div class="mt-6 flex flex-row-reverse gap-x-2">
+                <!-- if user is unpaid -->
+                @if ((!isPaidUser && totalPositions() >= 1) || (isPaidUser() &&
+                userRole() === premiumUserRoleId && totalPositions() >= 10)) {
+                <button (click)="dialogRef.close()" type="button"
+                    class="px-6 py-2 text-sm  text-primary font-semibold  rounded-full bg-slate-100 hover:bg-slate-200 transition-all ease-in-out duration-[250ms] text-center">Please
+                    upgrade your account to create more projects</button>
+                }
+                @else {<button type="submit"
+                    class="px-6 py-2 text-sm text-white hover:text-primary font-semibold border-2 border-primary rounded-full bg-primary hover:bg-white transition-all ease-in-out duration-[250ms] text-center">Submit</button>
+
+                <button (click)="dialogRef.close()" type="button"
+                    class="px-6 py-2 text-sm  text-primary font-semibold  rounded-full bg-slate-100 hover:bg-slate-200 transition-all ease-in-out duration-[250ms] text-center">Cancel</button>
+                }
+            </div>
+
+        </form>
+    </div>
+
+</div>

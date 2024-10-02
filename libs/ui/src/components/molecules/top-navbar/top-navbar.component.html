@@ -1,0 +1,16 @@
+<div
+    class="p-3 bg-primary text-right text-lg font-semibold  flex justify-between text-white cursor-pointer md:rounded-md rounded-br-md rounded-bl-md">
+    <button (click)="navbarOpen.emit(true)" class="flex items-center">
+        <mat-icon class="flex md:hidden hover:text-white icon-size-6 cursor-pointer"
+            [svgIcon]="'feather:menu'"></mat-icon>
+    </button>
+    <div class="flex gap-x-3 align-middle items-center">
+        <a title="Need help?" class="hidden md:flex"><mat-icon class="text-white icon-size-6"
+                [svgIcon]="'feather:help-circle'"></mat-icon></a>
+       
+        <button routerLink="/sign-out" title="Logout"
+            class="hover-btn rounded-full flex md:hidden items-center align-middle gap-x-2 text-white border border-white hover:bg-white hover:text-primary px-2 py-2 ease-in-out transition-all">
+            <mat-icon class="" [svgIcon]="'mat_solid:logout'"></mat-icon>
+        </button>
+    </div>
+</div>

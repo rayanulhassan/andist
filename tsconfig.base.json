@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@andist/directus": ["libs/directus/src/index.ts"],
+      "@andist/icons": ["libs/icons/src/index.ts"],
+      "@andist/stripe": ["libs/stripe/src/index.ts"],
+      "@andist/ui": ["libs/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

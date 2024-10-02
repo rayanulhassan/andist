@@ -1,0 +1,83 @@
+<auth-pages-view [snackbarMessage]="snackbarMessage" [app_name]="env.app_name"
+    [app_description]="env.auth_page_description" [app_version_name]="env.app_version_name">
+    <!-- Title -->
+    <div class="font-semibold leading-none text-2xl">Login</div>
+
+    <!-- Sign in form -->
+    <form class="mt-8 md:mt-12" [formGroup]="signInForm" #signInNgForm="ngForm" (submit)="signIn()">
+
+        <!-- Email field -->
+        <mat-form-field class="w-full mb-3">
+            <input placeholder="Email" id="email" matInput [formControlName]="'email'">
+            @if(signInForm.get('email')?.hasError('required')){
+            <mat-error>
+                Email address is required
+            </mat-error>
+            }
+            @if (signInForm.get('email')?.hasError('email')) {
+            <mat-error>
+                Please enter a valid email address
+            </mat-error>
+            }
+
+
+        </mat-form-field>
+
+        <!-- Password field -->
+        <mat-form-field class="w-full mb-1.5">
+            <input placeholder="Password" id="password" matInput type="password" [formControlName]="'password'"
+                #passwordField>
+            <button mat-icon-button type="button"
+                (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                matSuffix>
+                @if (passwordField.type === 'password') {
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                }
+                @if (passwordField.type === 'text') {
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                }
+
+
+            </button>
+            <mat-error>
+                Password is required
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Actions -->
+        <div class="inline-flex items-center justify-between w-full">
+            <a class="text-md font-medium text-primary-500 hover:underline" [routerLink]="['/forgot-password']">Forgot
+                password?
+            </a>
+        </div>
+
+
+        <!-- Submit button -->
+        <button [disabled]="signInForm.disabled"
+            class="h-10 bg-primary border-2 border-primary disabled:opacity-50 disabled:pointer-events-none duration-300 ease-in-out  font-medium hover:bg-white hover:text-primary px-6 py-2 rounded-full text-sm text-white transition-colors w-full mt-8 mb-12 flex items-center justify-center"
+            mat-flat-button>
+            @if (!signInForm.disabled) {
+            <div class="w-full text-center">
+                Login
+            </div>
+            }
+
+            @if (signInForm.disabled) {
+            <div class="flex w-full justify-center">
+                <mat-progress-spinner [color]="'accent'" [diameter]="24"
+                    [mode]="'indeterminate'"></mat-progress-spinner>
+            </div>
+            }
+
+
+
+        </button>
+
+        <div>
+            <div class="font-bold leading-none">Don't have an account?</div>
+            <a class="underline hover:no-underline leading-tight" [routerLink]="['/sign-up']">Register for
+                a {{env.app_name}} account here
+            </a>
+        </div>
+    </form>
+</auth-pages-view>

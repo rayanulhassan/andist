@@ -1,0 +1,80 @@
+<auth-pages-view [snackbarMessage]="snackbarMessage" [app_name]="env.app_name"
+    [app_description]="env.auth_page_description" [app_version_name]="env.app_version_name">
+    <!-- Title -->
+    <div class="font-semibold leading-none text-2xl">Sign up</div>
+
+    <!-- Sign Up form -->
+    <form class="mt-8 md:mt-12" [formGroup]="signUpForm" #signUpNgForm="ngForm">
+
+        <!-- Name field -->
+        <mat-form-field class="w-full mb-3">
+
+            <input id="name" matInput [formControlName]="'first_name'" placeholder="Full name">
+            @if (signUpForm.get('first_name')?.hasError('required')) {
+            <mat-error>
+                Full name is required
+            </mat-error>
+            }
+
+        </mat-form-field>
+
+        <!-- Email field -->
+        <mat-form-field class="w-full mb-3">
+            <input id="email" matInput [formControlName]="'email'" placeholder="Email address">
+            @if (signUpForm.get('email')?.hasError('required')) {
+            <mat-error>
+                Email address is required
+            </mat-error>
+            }
+            @if (signUpForm.get('email')?.hasError('email')) {
+            <mat-error>
+                Please enter a valid email address
+            </mat-error>
+            }
+
+        </mat-form-field>
+
+        <!-- Password field -->
+        <mat-form-field class="w-full mb-1.5">
+            <input placeholder="Password" id="password" matInput type="password" [formControlName]="'password'"
+                #passwordField>
+            <button mat-icon-button type="button"
+                (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                matSuffix>
+                @if (passwordField.type === 'password') {
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                }
+
+                @if (passwordField.type === 'text') {
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                }
+
+
+            </button>
+            <mat-error>
+                Password is required
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Submit button -->
+        <button
+            class="h-10 bg-primary border-2 border-primary disabled:opacity-50 disabled:pointer-events-none duration-300 ease-in-out  font-medium hover:bg-white hover:text-primary px-6 py-2 rounded-full text-sm text-white transition-colors w-full mt-8 mb-12 flex items-center justify-center"
+            [disabled]="signUpForm.disabled" (click)="signUp()">
+            @if (!signUpForm.disabled) {
+            <span>
+                Create your free account
+            </span>
+            }
+            @if (signUpForm.disabled) {
+            <mat-progress-spinner [diameter]="24" [mode]="'indeterminate'" [color]="'accent'"></mat-progress-spinner>
+            }
+        </button>
+
+        <div>
+            <div class="font-bold leading-none">Already have an account?</div>
+            <a class="underline hover:no-underline leading-tight" [routerLink]="['/sign-in']">Sign in
+            </a>
+        </div>
+
+    </form>
+</auth-pages-view>

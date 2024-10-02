@@ -1,0 +1,32 @@
+<div class="flex justify-center align-middle items-center pt-10 w-full">
+    <div class="bg-white rounded-lg p-10 flex flex-col justify-center align-middle items-center">
+        <div class="pb-8">
+            <ng-lottie width="100px" [options]="options" />
+        </div>
+
+
+        @if (status === 'payment_check') {
+        <p>Please wait, we are confirming your payment</p>
+        }
+        @if (status === 'payment_success' || status === 'user_update' ) {
+        <p>Thank you for your payment, we are updating your account</p>
+
+        }
+        @if (status === 'payment_failed') {
+        <p>We are unable to confirm your payment. Please <a class="underline font-semibold">contact support</a></p>
+        <br>
+            <p>or go to <a class="font-semibold" routerLink="/signed-in-redirect">dasboard</a></p>
+        }
+
+        @if (status === 'user_update_failed') {
+        <p>We are unable to upgrade your account. Please <a class="underline font-semibold">contact support</a></p>
+        <br>
+            <p>or go to <a class="font-semibold" routerLink="/signed-in-redirect">dasboard</a></p>
+        }
+
+        @if (status === 'user_update_success') {
+        <p>Thank you for your payment. Your account has been upgraded</p>
+        <p class="mt-1 text-center">Redirecting to your <a class="font-semibold" routerLink="/signed-in-redirect">dashboard</a>...</p>
+        }
+    </div>
+</div>
